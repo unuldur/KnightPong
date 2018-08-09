@@ -11,11 +11,11 @@ public class Controller : MonoBehaviour, IController
     private List<IPlayable> _playables = new List<IPlayable>();
     
 
-    public string AttackKey;
-    public string UpKey;
-    public string DownKey;
-    public string LeftKey;
-    public string RightKey;
+    public KeyCode AttackKey;
+    public KeyCode UpKey;
+    public KeyCode DownKey;
+    public KeyCode LeftKey;
+    public KeyCode RightKey;
 
     // Use this for initialization
     void Start () {

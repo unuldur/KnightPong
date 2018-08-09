@@ -10,7 +10,7 @@ public class Knight : MonoBehaviour, IPlayable
 
     public Transform Controller;
     public float Speed = 1f;
-
+    public Player player;
     private Animator _animator;
 
     private int _position = 2;
@@ -59,5 +59,10 @@ public class Knight : MonoBehaviour, IPlayable
             default:
                 throw new ArgumentOutOfRangeException("action", action, null);
         }
+    }
+
+    public void DoStun()
+    {
+
     }
 }

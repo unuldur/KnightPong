@@ -9,9 +9,11 @@ public class PongBar : MonoBehaviour, IPlayable
 {
 
     public Transform Controller;
-    public int Speed;
+    public float Speed;
     public Collider2D TopWall;
     public Collider2D BottomWall;
+    public Ball ball;
+    public Player player;
 
     private BoxCollider2D _boxCollider;
     
@@ -28,6 +30,10 @@ public class PongBar : MonoBehaviour, IPlayable
         switch (action)
         {
             case Action.Attack:
+                if (!ball.Starting)
+                {
+                    ball.SetStart(player);
+                }
                 break;
             case Action.Up:
                 if (!_boxCollider.IsTouching(TopWall))
