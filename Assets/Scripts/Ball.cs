@@ -41,6 +41,7 @@ public class Ball : MonoBehaviour {
         return (ballPos.y - racketPos.y) / racketHeight;
     }
     
+
     public void OnCollisionEnter2D(Collision2D col) {
         
         if (col.gameObject.name == "pongBarLeft") {
@@ -61,15 +62,6 @@ public class Ball : MonoBehaviour {
             Vector2 dir = new Vector2(-1, y).normalized;
             GetComponent<Rigidbody2D>().velocity = dir * speed;
         }
-
-        if (col.gameObject.name == "Up")
-        {
-            GetComponent<Rigidbody2D>().velocity *= new Vector2(1,-1);
-        }
-
-        if (col.gameObject.name == "Down")
-        {
-            GetComponent<Rigidbody2D>().velocity *= new Vector2(1, 1);
-        }
+        
     }
 }

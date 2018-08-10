@@ -355,6 +355,21 @@ Prefab:
       propertyPath: player
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212964632700431390, guid: 3b8afa3e14e4c194baa3b545ba368bf4,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 0.7971361
+      objectReference: {fileID: 0}
+    - target: {fileID: 212964632700431390, guid: 3b8afa3e14e4c194baa3b545ba368bf4,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212964632700431390, guid: 3b8afa3e14e4c194baa3b545ba368bf4,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 0.7688679
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b8afa3e14e4c194baa3b545ba368bf4, type: 2}
   m_IsPrefabAsset: 0
@@ -1199,12 +1214,12 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 0.0001
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &2079216452
 BoxCollider2D:
@@ -1301,7 +1316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5215f6ac3fd7239478b643987106f32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 30
   PlayerStart: 0
 --- !u!1001 &2114417586
 Prefab:
