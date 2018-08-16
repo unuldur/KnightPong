@@ -16,13 +16,13 @@ public class PongBar : MonoBehaviour, IPlayable
     public Player player;
 
     private BoxCollider2D _boxCollider;
-    
+    private BoxCollider2D _attack;
 
-    private CompositeCollider2D _composite;
 	// Use this for initialization
 	void Start () {
 		Controller.GetComponent<IController>().AddPlayable(this);
 	    _boxCollider = GetComponent<BoxCollider2D>();
+        _attack = GetComponentInChildren<BoxCollider2D>();
 	}
 
     public void DoAction(Action action)
@@ -33,6 +33,10 @@ public class PongBar : MonoBehaviour, IPlayable
                 if (!ball.Starting)
                 {
                     ball.SetStart(player);
+                    break;
+                }
+                if (_attack.IsTouching(ball.GetComponent<BoxCollider2D>())){
+                    ball.IncreaseSpeed();
                 }
                 break;
             case Action.Up:

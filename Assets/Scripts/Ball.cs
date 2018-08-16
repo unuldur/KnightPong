@@ -3,14 +3,18 @@ using System.Collections;
 using DefaultNamespace;
 
 public class Ball : MonoBehaviour {
-    public float speed = 30;
+    public float InitSpeed = 30;
     public bool Starting { get;private set; }
-    private Vector3 _startPos;
     public Player PlayerStart;
+    public float AttackSpeed = 2;
+
+    private Vector3 _startPos;
+    private float _speed;
 
     void Start() {
         Starting = false;
         _startPos = transform.position;
+        _speed = InitSpeed;
     }
 
     public void Restart(Player player)
@@ -24,13 +28,14 @@ public class Ball : MonoBehaviour {
     public void SetStart(Player player)
     {
         if (player != this.PlayerStart) return;
+        _speed = InitSpeed;
         switch (player)
         {
             case Player.Player1:
-                GetComponent<Rigidbody2D>().velocity = Vector2.left * -speed;
+                GetComponent<Rigidbody2D>().velocity = Vector2.left * -_speed;
                 break;
             case Player.Player2:
-                GetComponent<Rigidbody2D>().velocity = Vector2.left * speed;
+                GetComponent<Rigidbody2D>().velocity = Vector2.left * _speed;
                 break;
         }
         Starting = true;
@@ -39,6 +44,17 @@ public class Ball : MonoBehaviour {
     public float hitFactor(Vector2 ballPos, Vector2 racketPos,
                     float racketHeight) {
         return (ballPos.y - racketPos.y) / racketHeight;
+    }
+
+    public void IncreaseSpeed(float speed)
+    {
+        GetComponent<Rigidbody2D>().velocity += speed * GetComponent<Rigidbody2D>().velocity;
+        _speed += speed;
+    }
+
+    public void IncreaseSpeed()
+    {
+        IncreaseSpeed(AttackSpeed);
     }
     
 
@@ -51,7 +67,7 @@ public class Ball : MonoBehaviour {
             
             Vector2 dir = new Vector2(1, y).normalized;
             
-            GetComponent<Rigidbody2D>().velocity = dir * speed;
+            GetComponent<Rigidbody2D>().velocity = dir * _speed;
         }
         
         if (col.gameObject.name == "pongBarRight") {
@@ -60,7 +76,7 @@ public class Ball : MonoBehaviour {
                                 col.collider.bounds.size.y);
             
             Vector2 dir = new Vector2(-1, y).normalized;
-            GetComponent<Rigidbody2D>().velocity = dir * speed;
+            GetComponent<Rigidbody2D>().velocity = dir * _speed;
         }
         
     }
