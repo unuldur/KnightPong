@@ -30,6 +30,7 @@ public class Knight : MonoBehaviour, IPlayable
         switch (action)
         {
             case Action.Attack:
+                _animator.SetTrigger("attack");
                 break;
             case Action.Up:
                 if (_position < 3)
