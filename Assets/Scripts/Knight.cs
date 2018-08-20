@@ -11,13 +11,22 @@ public class Knight : MonoBehaviour, IPlayable
     public Transform Controller;
     public float Speed = 1f;
     public Player player;
+    public Life life;
+    public int PvMax = 100;
+    public int attackDamage = 10;
+
+
     private Animator _animator;
+    private Attack _attack;
+    private int _currentPv;
 
     private int _position = 2;
     // Use this for initialization
     void Start () {
 		Controller.GetComponent<IController>().AddPlayable(this);
 	    _animator = GetComponent<Animator>();
+        _attack = GetComponentInChildren<Attack>();
+        _currentPv = PvMax;
 	}
 	
 	// Update is called once per frame
@@ -65,5 +74,24 @@ public class Knight : MonoBehaviour, IPlayable
     public void DoStun()
     {
 
+    }
+
+    public void AttackDamage()
+    {
+        Debug.Log("Attack !!!!!!!!!!");
+        if (_attack.Knight == null || _attack.Knight.player == player) return;
+        if(_attack.Knight._position == _position)
+        {
+            Debug.Log("Ahah meme position pas de dammage !!! ");
+            return;
+        }
+        _attack.Knight.DoDamage();
+    }
+
+    private void DoDamage()
+    {
+        _currentPv -= attackDamage;
+        Debug.Log("Aie il me reste " + _currentPv + " pv");
+        life.ChangeLife(this, _currentPv);
     }
 }
