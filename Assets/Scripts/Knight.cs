@@ -85,9 +85,13 @@ public class Knight : MonoBehaviour, IPlayable
         _etat = Etat.Stun;
     }
 
-    public void EverythingGood()
+    public void EverythingGood(Etat etat)
     {
-        _etat = Etat.None;
+        if(etat == _etat)
+        {
+            _etat = Etat.None;
+        }
+
     }
 
     public void AttackDamage()

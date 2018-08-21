@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DefaultNamespace;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,10 +16,11 @@ public class ExitState : StateMachineBehaviour {
     //}
 
     public Knight knight;
+    public Etat etat;
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-	    knight.EverythingGood();
+	    knight.EverythingGood(etat);
 	}
 
 	// OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
