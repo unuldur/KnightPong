@@ -54,14 +54,4 @@ public class PongBar : MonoBehaviour, IPlayable
                 break;
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        Debug.Log("Lol");
-    }
-
-    private void OnTriggerExit2D(Collider2D other)
-    {
-       
-    }
 }

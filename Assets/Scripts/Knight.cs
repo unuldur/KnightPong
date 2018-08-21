@@ -19,14 +19,20 @@ public class Knight : MonoBehaviour, IPlayable
     private Animator _animator;
     private Attack _attack;
     private int _currentPv;
+    private Etat _etat;
 
     private int _position = 2;
     // Use this for initialization
     void Start () {
 		Controller.GetComponent<IController>().AddPlayable(this);
 	    _animator = GetComponent<Animator>();
+        foreach(ExitState exit in _animator.GetBehaviours<ExitState>())
+        {
+            exit.knight = this;
+        }
         _attack = GetComponentInChildren<Attack>();
         _currentPv = PvMax;
+        _etat = Etat.None;
 	}
 	
 	// Update is called once per frame
@@ -36,10 +42,12 @@ public class Knight : MonoBehaviour, IPlayable
 
     public void DoAction(Action action)
     {
+        if (_etat != Etat.None) return;
         switch (action)
         {
             case Action.Attack:
                 _animator.SetTrigger("attack");
+                _etat = Etat.Attack; ;
                 break;
             case Action.Up:
                 if (_position < 3)
@@ -73,16 +81,24 @@ public class Knight : MonoBehaviour, IPlayable
 
     public void DoStun()
     {
+        _animator.SetTrigger("stun");
+        _etat = Etat.Stun;
+    }
 
+    public void EverythingGood()
+    {
+        _etat = Etat.None;
     }
 
     public void AttackDamage()
     {
         Debug.Log("Attack !!!!!!!!!!");
+        _etat = Etat.Attack;
         if (_attack.Knight == null || _attack.Knight.player == player) return;
-        if(_attack.Knight._position == _position)
+        if(_attack.Knight._position == _position && _attack.Knight._etat != Etat.Stun)
         {
             Debug.Log("Ahah meme position pas de dammage !!! ");
+            DoStun();
             return;
         }
         _attack.Knight.DoDamage();
