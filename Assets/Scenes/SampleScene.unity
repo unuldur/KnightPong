@@ -1951,7 +1951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5215f6ac3fd7239478b643987106f32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitSpeed: 20
+  InitSpeed: 5
   PlayerStart: 0
   AttackSpeed: 2
 --- !u!1001 &2114417586
