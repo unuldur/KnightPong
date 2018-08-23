@@ -112,7 +112,6 @@ public class Knight : MonoBehaviour, IPlayable
     {
         _currentPv -= attackDamage;
         Debug.Log("Aie il me reste " + _currentPv + " pv");
-        GetComponent<Rigidbody2D>().AddForce(new Vector2(-1,-1));
         life.ChangeLife(this, _currentPv);
     }
 }
